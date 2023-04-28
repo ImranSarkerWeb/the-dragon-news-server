@@ -25,6 +25,15 @@ app.get("/news/:id", (req, res) => {
   res.send(selectedNews);
 });
 
+app.get("/categories/:id", (req, res) => {
+  const id = req.params.id;
+  if (id == 0) {
+    res.send(news);
+  } else {
+    const categoryNews = news.filter((n) => n.category_id == id);
+    res.send(categoryNews);
+  }
+});
 app.listen(port, () => {
   console.log(`The node is runnit at port ${port}`);
 });
